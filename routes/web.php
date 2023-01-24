@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\DeliveryTypesController;
+use App\Http\Controllers\InactiveClientsController;
+use App\Http\Controllers\LastDeliveriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-});
-Route::get('/clients', function () {
-    return view('clients');
-});
-Route::get('/deliveries', function () {
-    return view('deliveries');
-});
+Route::get('/', [ClientController::class, 'showForm']);
+
+Route::get('/clients', [ClientController::class, 'showForm']);
+
+Route::get('/clients/inactive', [InactiveClientsController::class, 'showForm']);
+
+Route::get('/deliveries/types', [DeliveryTypesController::class, 'showForm']);
+
+Route::get('/deliveries/last', [LastDeliveriesController::class, 'showForm']);
+
+Route::get('/deliveries/{clientId}', [DeliveryController::class, 'showForm']);
