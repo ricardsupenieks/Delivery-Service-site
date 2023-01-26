@@ -3,29 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use App\Models\Client;
 use App\Models\Delivery;
-use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class DeliveryTypesController extends Controller
 {
-    public function showForm()
+    public function showForm(): View
     {
-//        $deliveries = Delivery::with('address.client')->
+        $addresses = Address::all();
 
-//        $deliveries = Delivery::whereType(1)->orWhere('type', 2)->get();
-//        $results = [];
-//
-//        foreach ($deliveries as $delivery) {
-//            $addresses = Address::whereId($delivery->address_id)->get();
-//
-//            foreach ($addresses as $address) {
-//                $client = Client::whereId($address->client_id)->first();
-//
-//                $results[] = [$client->name, $address->title];
-//            }
-//        }
+        $results = [];
 
-        return view('types');
+        foreach($addresses as $address) {
+
+            $liquidDeliveries = Delivery::with('client')
+                ->where('address_id', $address->id)
+                ->where('type', 1)
+                ->get();
+
+            $hardDeliveries = Delivery::with('client')
+                ->where('address_id', $address->id)
+                ->where('type', 2)
+                ->get();
+
+            if(!$liquidDeliveries->isEmpty() && !$hardDeliveries->isEmpty()) {
+
+                $results[]=["address" => $address->title, "client" => $address->client->name];
+            }
+        }
+
+        return view('types', ['types' => $results]);
     }
 }
