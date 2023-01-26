@@ -9,7 +9,6 @@ use Znck\Eloquent\Traits\BelongsToThrough;
 class Address extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'title',
         'client_id',

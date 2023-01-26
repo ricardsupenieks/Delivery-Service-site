@@ -12,9 +12,6 @@
                     <table class="w-full text-sm">
                         <thead class="text-xs uppercase bg-white">
                         <tr>
-                            <th scope="col" class="pl-3 py-3 text-center">
-                                #
-                            </th>
                             <th scope="col" class="px-6 py-3 text-left">
                                 Klienti
                             </th>
@@ -24,11 +21,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($clients as $key => $client)
+                        @foreach($clients as $client)
                             <tr class="bg-white text-gray-700 hover:bg-gray-50">
-                                <th scope="row" class="text-center pl-3  py-4 whitespace-nowrap">
-                                    {{$key + 1}}
-                                </th>
                                 <td class="px-6 py-4 font-medium text-left">
                                     {{$client->name}}
                                 </td>
@@ -61,9 +55,13 @@
                             <th scope="col" class="pl-3 py-3 text-center">
                                 Adreses
                             </th>
+                            <th>
+                            </th>
                         </tr>
                         </thead>
-                        <tbody id="addressesBody"></tbody>
+                        <tbody id="addressesBody">
+
+                        </tbody>
                     </table>
                 </div>
             </div>
