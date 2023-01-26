@@ -42,10 +42,10 @@
                                     {{$address->title}}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-center">
-{{--                                    {{$delivery->deliveryLine->item}}--}}
+                                    {{ucfirst($delivery->deliveryLine->item)}}
                                 </td>
                                 <td class="px-6 py-4 font-medium text-right">
-{{--                                    {{$delivery->deliveryLine->qty}}--}}
+                                    {{ucfirst($delivery->deliveryLine->qty)}}
                                 </td>
                             </tr>
                         @endforeach

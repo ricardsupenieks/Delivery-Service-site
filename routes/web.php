@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressesController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\DeliveryTypesController;
@@ -21,11 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ClientController::class, 'showForm']);
 
 Route::get('/clients', [ClientController::class, 'showForm']);
-
 Route::get('/clients/inactive', [InactiveClientsController::class, 'showForm']);
 
+Route::get('/addresses/{clientId}', [AddressesController::class, 'getAddresses']);
+
 Route::get('/deliveries/types', [DeliveryTypesController::class, 'showForm']);
-
 Route::get('/deliveries/last', [LastDeliveriesController::class, 'showForm']);
-
 Route::get('/deliveries/{clientId}', [DeliveryController::class, 'showForm']);
+

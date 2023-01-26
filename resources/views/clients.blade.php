@@ -10,7 +10,7 @@
 
             <div class="relative overflow-x-auto shadow-md">
                 <table class="w-full text-sm">
-                    <thead class="text-xs uppercase bg-gray-50 bg-white">
+                    <thead class="text-xs uppercase bg-white">
                     <tr>
                         <th scope="col" class="pl-3 py-3 text-center">
                             #
@@ -35,7 +35,7 @@
                             <td class="px-6 py-4 font-medium text-right text-xs">
                                 <button
                                     id="addresses"
-                                    onclick="showAddresses()"
+                                    onclick="showAddresses({{$client->id}})"
                                     class="mx-4 py-1 px-2 bg-blue-600 rounded-lg text-white font-bold hover:bg-blue-700"
                                 >
                                     Parādīt adreses
@@ -53,40 +53,44 @@
 
         </div>
 
-        <div class="bg-indigo-600 w-full h-screen mr-10 mt-10">
-            <div class="container pt-4">
-                <table class="table table-bordered data-table">
-                    <thead class="text-center pt-4">
+        <div class="w-full h-screen mr-10 mt-10">
+            <div id="addressesTable" class="hidden">
+                <table class="w-full text-sm">
+                    <thead class="text-xs uppercase bg-white w-full">
                     <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th scope="col" class="pl-3 py-3 text-center">
+                            Adreses
+                        </th>
                     </tr>
                     </thead>
-                    <tbody class="text-center">
-                    </tbody>
+                    <tbody id="addressesBody"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
-        $(function () {
-            var table = $('.data-table').DataTable({
-            stateSave: true,
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('datatable') }}",
-            columns: [
-        {data: 'id', name: 'id'},
-        {data: 'name', name: 'name'},
-        {data: 'email', name: 'email'},
-            ]
-        });
+        function showAddresses(clientId) {
+            var addressesBody = document.getElementById("addressesBody")
+            var request = new XMLHttpRequest()
 
-            $(".reload" ).click(function() {
-            table.ajax.reload(null, false);
-        });
-        });
+            request.open("GET", `/addresses/${clientId}`);
+            request.send();
+
+            request.onreadystatechange = function () {
+                if (request.readyState === 4 && request.status === 200) {
+                    var addresses = JSON.parse(request.responseText)['addresses'];
+
+                    while(addressesBody.firstChild) {
+                        addressesBody.removeChild(addressesBody.firstChild);
+                    }
+
+                    addresses.forEach((row) => {
+                        addressesBody.innerHTML +=`<tr class="bg-white text-gray-700"><td class="px-6 py-3 text-left">`+Object.values(row)[1]+`<td></tr>`
+                    });
+                }
+            }
+            $('#addressesTable').toggle();
+        }
     </script>
 @endsection

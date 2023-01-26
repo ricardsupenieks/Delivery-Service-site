@@ -54,7 +54,7 @@
                                         {{$delivery->route->date}}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-left">
-{{--                                        {{$delivery->deliveryLine->qty}}--}}
+                                        {{$delivery->deliveryLine->qty}}
                                     </td>
                                     <td class="px-6 py-4 font-medium text-left">
                                         {{$delivery->status}}
