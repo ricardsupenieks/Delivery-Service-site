@@ -11,6 +11,7 @@ class Client extends Model
     use HasFactory;
     use HasRelationships;
 
+    public $timestamps = false;
 
     protected $fillable = [
         'name',
