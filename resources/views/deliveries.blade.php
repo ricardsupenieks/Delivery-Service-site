@@ -52,7 +52,15 @@
                                             {{$delivery->deliveryLine->qty}}
                                         </td>
                                         <td class="px-6 py-4 font-medium text-left">
-                                            {{$delivery->status}}
+                                            @if($delivery->status === 1)
+                                                Nav izpildīts
+                                            @endif
+                                            @if($delivery->status === 2)
+                                                Ir izpildīts
+                                            @endif
+                                                @if($delivery->status === 3)
+                                                    Atcelts
+                                                @endif
                                         </td>
                                     @endforeach
                                 @endforeach
