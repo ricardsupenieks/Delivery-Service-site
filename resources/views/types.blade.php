@@ -23,10 +23,10 @@
                     @foreach($types as $type)
                         <tr class="bg-white text-gray-700 hover:bg-gray-50">
                             <td class="px-6 py-4 font-medium text-left">
-                                {{$type["client"]}}
+                                {{$type->client->name}}
                             </td>
                             <td class="px-6 py-4 font-medium text-left">
-                                {{$type["address"]}}
+                                {{$type->title}}
                             </td>
                         </tr>
                     @endforeach
