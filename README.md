@@ -19,8 +19,8 @@ This program uses MySQL database calls and ajax to bring information to the user
 1. Clone this repository
 2. Run composer install in terminal
 3. Rename ".env.example" to ".env" and enter the correct database information
-4. Run php artisan migrate in terminal
-5. You can run the development website by typing the following command <code>$ php artisan serve</code>
+4. Run <code>$ php artisan migrate </code>
+5. You can run the development website <code>$ php artisan serve</code>
 
 ## Demo
 
