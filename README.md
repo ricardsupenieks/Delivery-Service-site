@@ -6,6 +6,7 @@ This program uses MySQL database calls and ajax to bring information to the user
 ## Features
 * Dynamic server-side client addresses table
 * Client deliveries overview
+* List of clients who have had deliveries of different categories to the same address
 * All latest deliveries
 * Inactive client overview
 
