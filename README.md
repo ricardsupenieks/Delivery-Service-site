@@ -20,7 +20,8 @@ This program uses MySQL database calls and ajax to bring information to the user
 2. Run <code>$ composer install</code>
 3. Rename ".env.example" to ".env" and enter the correct database information
 4. Run <code>$ php artisan migrate </code>
-5. You can run the development website <code>$ php artisan serve</code>
+5. Run <code>$ php artisan key:generate </code>
+6. You can run the development website <code>$ php artisan serve</code>
 
 ## Demo
 
