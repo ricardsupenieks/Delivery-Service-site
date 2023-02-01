@@ -11,6 +11,9 @@ class Delivery extends Model
     use HasFactory;
     use BelongsToThrough;
 
+    const LIQUID_TYPE = 1;
+    const SOLID_TYPE = 2;
+
     protected $fillable = [
         'route_id',
         'address_id',

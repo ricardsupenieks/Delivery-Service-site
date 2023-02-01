@@ -5,7 +5,7 @@
         Pasūtījumu tipi
     </div>
 
-    @if(!empty($types))
+    @if(!$addresses->isEmpty())
         <div class="flex flex-col mt-10 w-2/5 mx-auto">
             <div class="relative overflow-x-auto shadow-md">
                 <table class="w-full text-sm">
@@ -20,13 +20,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($types as $type)
+                    @foreach($addresses as $address)
                         <tr class="bg-white text-gray-700 hover:bg-gray-50">
                             <td class="px-6 py-4 font-medium text-left">
-                                {{$type->client->name}}
+                                {{$address->client->name}}
                             </td>
                             <td class="px-6 py-4 font-medium text-left">
-                                {{$type->title}}
+                                {{$address->title}}
                             </td>
                         </tr>
                     @endforeach

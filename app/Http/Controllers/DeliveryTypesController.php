@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use App\Models\Delivery;
 use Illuminate\View\View;
 
 class DeliveryTypesController extends Controller
@@ -10,11 +11,9 @@ class DeliveryTypesController extends Controller
     public function showForm(): View
     {
         $addresses = Address::with('client')->whereHas('deliveries', function ($query) {
-            $query->where('type', 1);
-        })->whereHas('deliveries', function ($query) {
-                $query->where('type', 2);
+            $query->where('type', [Delivery::LIQUID_TYPE, Delivery::SOLID_TYPE]);
         })->get();
 
-        return view('types', ['types' => $addresses]);
+        return view('types', ['addresses' => $addresses]);
     }
 }
